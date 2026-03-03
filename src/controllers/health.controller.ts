@@ -1,6 +1,7 @@
 import {prisma} from "@lib/prisma";
+import type {Request, Response} from "express";
 
-export const healthCheck = async (req, res) => {
+export const healthCheck = async (req: Request, res: Response) => {
     try {
         await prisma.$queryRaw`SELECT 1`
 
@@ -9,12 +10,12 @@ export const healthCheck = async (req, res) => {
             database: "CONNECTED",
             timestamp: new Date().toISOString()
         });
-    } catch (error) {
+    } catch (error: unknown) {
         console.error(error);
         res.status(503).json({
             status: "DOWN",
             database: "DISCONNECTED",
-            error: error.message
+            error: (error as unknown as { message: string }).message
         })
     }
 }

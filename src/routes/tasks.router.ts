@@ -1,6 +1,6 @@
 import express from "express";
 
-import {tasksController} from "@controllers/tasks.controller";
+import {browse, add, read, edit, destroy} from "@controllers/tasks.controller";
 
 const router = express.Router();
 
@@ -8,16 +8,16 @@ const router = express.Router();
 // POST /tasks
 router
     .route("/")
-    .get(tasksController.browse)
-    .post(tasksController.add);
+    .get(browse)
+    .post(add);
 
 // GET /tasks/:id
 // PUT /tasks/:id
 // DELETE /tasks/:id
 router
     .route("/:id")
-    .get(tasksController.read)
-    .put(tasksController.edit)
-    .delete(tasksController.destroy);
+    .get(read)
+    .put(edit)
+    .delete(destroy);
 
 export default router;

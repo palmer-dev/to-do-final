@@ -4,7 +4,7 @@ import {success} from "@responses/success.response";
 import {error} from "@responses/error.response";
 import {prisma} from "@lib/prisma";
 
-const browse = async (req: Request, res: Response) => {
+export const browse = async (req: Request, res: Response) => {
     try {
         const tasks = await prisma.task.findMany();
         success(res, tasks, 201)
@@ -14,15 +14,15 @@ const browse = async (req: Request, res: Response) => {
     }
 };
 
-const add = async (req: Request, res: Response) => {
+export const add = async (req: Request, res: Response) => {
     try {
-        const {title, description} = req.body;
+        const {title, description, dueDate} = req.body;
 
         if (!title || !description)
             return error(res, 'Missing title or description', 400);
 
         const newTask = await prisma.task.create({
-            data: {title, description}
+            data: {title, description, dueDate}
         });
 
         success(res, newTask, 201)
@@ -32,11 +32,11 @@ const add = async (req: Request, res: Response) => {
     }
 }
 
-const read = async (req: Request, res: Response) => {
+export const read = async (req: Request, res: Response) => {
     try {
         const {id} = req.params;
 
-        const task = prisma.task.findUnique({
+        const task = await prisma.task.findUnique({
             where: {id: Number(id)}
         })
 
@@ -51,12 +51,12 @@ const read = async (req: Request, res: Response) => {
     }
 }
 
-const edit = async (req: Request, res: Response) => {
+export const edit = async (req: Request, res: Response) => {
     try {
         const {id} = req.params;
         const {title, description, completed, dueDate} = req.body;
 
-        prisma.task.update(
+        await prisma.task.update(
             {
                 where: {id: Number(id)},
                 data: {title, description, completed, dueDate}
@@ -69,7 +69,7 @@ const edit = async (req: Request, res: Response) => {
     }
 }
 
-const destroy = async (req: Request, res: Response) => {
+export const destroy = async (req: Request, res: Response) => {
     try {
         const {id} = req.params;
 
@@ -81,12 +81,3 @@ const destroy = async (req: Request, res: Response) => {
         error(res, 'Error while deleting task');
     }
 }
-
-
-module.exports = {
-    browse,
-    add,
-    read,
-    edit,
-    destroy
-};
