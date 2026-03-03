@@ -1,0 +1,20 @@
+{
+  "name": "to-do-final",
+  "version": "1.0.0",
+  "description": "Projet final CI-CD ESCENTECH N5",
+  "homepage": "https://github.com/palmer-dev/to-do-final#readme",
+  "bugs": {
+    "url": "https://github.com/palmer-dev/to-do-final/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/palmer-dev/to-do-final.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "node test"
+  }
+}
