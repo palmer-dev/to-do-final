@@ -7,11 +7,12 @@
 generator client {
   provider            = "prisma-client"
   output              = "../src/generated/prisma"
+  moduleFormat        = "commonjs"
   importFileExtension = ""
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 model Task {
