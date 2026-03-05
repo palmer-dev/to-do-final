@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from '../src/lib/app';
-import {prisma} from '../src/lib/prisma';
+import {prisma} from "@lib/prisma";
 
 describe('Tasks API endpoints', () => {
     afterAll(async () => {

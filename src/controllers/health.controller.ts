@@ -1,4 +1,4 @@
-import {prisma} from "@lib/prisma";
+import { prisma } from "@lib/prisma";
 import type {Request, Response} from "express";
 
 export const healthCheck = async (req: Request, res: Response) => {
