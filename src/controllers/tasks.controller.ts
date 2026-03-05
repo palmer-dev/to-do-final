@@ -7,7 +7,7 @@ import {prisma} from "@lib/prisma";
 export const browse = async (req: Request, res: Response) => {
     try {
         const tasks = await prisma.task.findMany();
-        success(res, tasks, 201)
+        success(res, tasks, 200)
     } catch (err) {
         console.error(err);
         error(res, 'Error while reading task');
@@ -44,9 +44,9 @@ export const read = async (req: Request, res: Response) => {
             return error(res, 'Task not found', 404);
         }
 
-        success(res, task, 201)
-    } catch (e) {
-        console.error(e);
+        success(res, task, 200)
+    } catch (err) {
+        console.error(err);
         error(res, 'Error while reading task');
     }
 }
@@ -63,8 +63,9 @@ export const edit = async (req: Request, res: Response) => {
             }
         );
 
-        success(res, 'Task updated successfully', 201)
-    } catch (e) {
+        success(res, 'Task updated successfully', 204)
+    } catch (err) {
+        console.error(err);
         error(res, 'Error while updating task');
     }
 }

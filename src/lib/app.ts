@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from "morgan";
 import cors from "cors";
+import router from '@routes/index.router';
 
 export const app = express();
 
@@ -19,5 +20,7 @@ app.use(
 app.options("*any", cors());
 
 app.use(express.json());
+
+app.use(router);
 
 export default app;
