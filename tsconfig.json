@@ -1,23 +1,19 @@
 {
   "compilerOptions": {
-    /* Cible et Module */
     "target": "ES2022",
-    "module": "NodeNext",
+    "module": "ESNext",
     "moduleResolution": "NodeNext",
     "lib": [
       "ES2022"
     ],
-    /* Sortie et Entrée */
     "rootDir": "./src",
     "outDir": "./dist",
     "baseUrl": ".",
-    /* Interopérabilité et Typage */
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    // Fortement recommandé pour éviter les bugs Mongoose/TS
+    "resolveJsonModule": true,
     "skipLibCheck": true,
-    /* Alias de chemins (Vérifie que tsc-alias est bien configuré) */
     "paths": {
       "@/*": [
         "src/*"
@@ -37,7 +33,7 @@
     }
   },
   "include": [
-    "src/**/*",
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",
